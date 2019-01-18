@@ -1,0 +1,7 @@
+create table tb_customer_account(
+	id_customer serial primary key,
+	cpf_cnpj bigint not null,
+	nm_customer varchar(50) not null,
+	is_active boolean not null, 
+	vl_total decimal not null
+);
