@@ -30,6 +30,7 @@ public abstract class DAO {
 	
 	
 	public static void executeBatch(List<CustomerAccount> listCustomer) {
+		executeTable();
 		Connection conexao = null;
 		try {
 			conexao = getConnection();
@@ -52,6 +53,18 @@ public abstract class DAO {
 		}
 	}
 	
+	private static void executeTable() {
+		Connection connec = getConnection();
+		
+		try {
+			PreparedStatement stmt = connec.prepareStatement("create table if not exists tb_customer_account(id_customer serial primary key,	cpf_cnpj bigint not null, nm_customer varchar(50) not null, is_active boolean not null,  vl_total decimal not null );");
+			stmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+
 	protected ResultSet selectRS(String query) throws SQLException, ClassNotFoundException {
         Class.forName(DRIVER);
         Connection con = getConnection();

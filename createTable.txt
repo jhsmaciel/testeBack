@@ -1,4 +1,4 @@
-create table tb_customer_account(
+create table if not exists tb_customer_account(
 	id_customer serial primary key,
 	cpf_cnpj bigint not null,
 	nm_customer varchar(50) not null,
